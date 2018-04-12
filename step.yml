@@ -30,8 +30,8 @@ host_os_tags:
 # https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
 #
 project_type_tags:
-   - ios
-   - android
+  - ios
+  - android
 
 # Type tags are used for categorizing steps, for easier step discovery in Step Libraries.
 # You can find more information about type tags in the Step Development Guideline:
@@ -58,16 +58,16 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - kobiton_app_name: "$BITRISE_APP_TITLE"
+  - kobiton_app_name: $BITRISE_APP_TITLE
     opts:
       title: "App title"
-      summary:Title of the app beign built
+      summary: Title of the app beign built
       description: |
         App title
       is_expand: true
       is_required: true
       value_options: []
-  - kobiton_app_path: "$BITRISE_SIGNED_APK_PATH"
+  - kobiton_app_path: $BITRISE_SIGNED_APK_PATH
     opts:
       title: "App path"
       summary: Path of the signed app apk or ipa
@@ -76,7 +76,7 @@ inputs:
       is_expand: true
       is_required: true
       value_options: []
-  - kobiton_app_id
+  - kobiton_app_id:
     opts:
       title: "App Identifier"
       summary: App Identifier on Kobiton
