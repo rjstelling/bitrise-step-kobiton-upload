@@ -9,6 +9,12 @@ hash ack 2>/dev/null || { echo >&2 "ack required, but it's not installed."; exit
 APPNAME=${kobiton_app_name}
 APPPATH=${kobiton_app_path}
 APPID=${kobiton_app_id}
+KUSERNAME=${kobiton_user_id}
+KAPIKEY=${kobiton_api_key}
+
+BASICAUTH=`echo -n $KUSERNAME:$KAPIKEY | base64`
+
+echo "Using Auth: $BASICAUTH"
 
 JSON="{\"filename\":\"${APPNAME}.apk\",\"appId\":$APPID}"
 curl --silent -X POST https://api.kobiton.com/v1/apps/uploadUrl \
@@ -31,7 +37,7 @@ echo "Processing: ${KAPPPATH}"
 
 JSON="{\"filename\":\"${APPNAME}.apk\",\"appPath\":\"${KAPPPATH}\"}"
 curl -X POST https://api.kobiton.com/v1/apps \
-  -H 'Authorization: Basic bGlvbmhlYXJ0OjAyYWE4YmQwLTMyZTQtNGQxZi04NTdkLTE0YThhNWYzMWJhMQ==' \
+  -H "Authorization: Basic $BASICAUTH" \
   -H 'Content-Type: application/json' \
   -d $JSON
   

@@ -82,7 +82,23 @@ inputs:
         App Identifier
       is_expand: true
       is_required: true
-      
+  - kobiton_user_id:
+    opts:
+      title: "Kobiton Username"
+      summary: The user to upload to Kobiton
+      description: |
+        Kobiton Username
+      is_expand: true
+      is_required: true
+  - kobiton_api_key:
+    opts:
+      title: "Kobiton API Key/Secret"
+      summary: API key to access Kobiton API
+      description: |
+        Kobiton API Key
+      is_expand: true
+      is_required: true
+           
 outputs:
   - KOBITON_UPLOAD_URL:
     opts:
