@@ -82,6 +82,14 @@ inputs:
         App Identifier
       is_expand: true
       is_required: true
+  - kobiton_app_type:
+    opts:
+      title: "App Type (ipa or apk)"
+      summary: App Suffix for uploading
+      description: |
+        App Type. put ipa for iOS or apk for Android
+      is_expand: true
+      is_required: true
   - kobiton_user_id:
     opts:
       title: "Kobiton Username"
@@ -98,7 +106,7 @@ inputs:
         Kobiton API Key
       is_expand: true
       is_required: true
-           
+
 outputs:
   - KOBITON_UPLOAD_URL:
     opts:

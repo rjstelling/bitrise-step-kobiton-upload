@@ -11,12 +11,13 @@ APPPATH=${kobiton_app_path}
 APPID=${kobiton_app_id}
 KUSERNAME=${kobiton_user_id}
 KAPIKEY=${kobiton_api_key}
+APPSUFFIX=${kobiton_app_type}
 
 BASICAUTH=`echo -n $KUSERNAME:$KAPIKEY | base64`
 
 echo "Using Auth: $BASICAUTH"
 
-JSON="{\"filename\":\"${APPNAME}.apk\",\"appId\":$APPID}"
+JSON="{\"filename\":\"${APPNAME}.${APPSUFFIX}\",\"appId\":$APPID}"
 curl --silent -X POST https://api.kobiton.com/v1/apps/uploadUrl \
   -H "Authorization: Basic $BASICAUTH" \
   -H 'Content-Type: application/json' \
@@ -35,12 +36,12 @@ curl  --progress-bar -T "${APPPATH}" -H "Content-Type: application/octet-stream"
 
 echo "Processing: ${KAPPPATH}"
 
-JSON="{\"filename\":\"${APPNAME}.apk\",\"appPath\":\"${KAPPPATH}\"}"
+JSON="{\"filename\":\"${APPNAME}.${APPSUFFIX}\",\"appPath\":\"${KAPPPATH}\"}"
 curl -X POST https://api.kobiton.com/v1/apps \
   -H "Authorization: Basic $BASICAUTH" \
   -H 'Content-Type: application/json' \
   -d $JSON
-  
+
 echo "...done"
 
 envman add --key KOBITON_UPLOAD_URL --value ${UPLOADURL}
