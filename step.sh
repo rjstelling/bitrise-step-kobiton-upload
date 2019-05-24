@@ -17,7 +17,12 @@ BASICAUTH=`echo -n $KUSERNAME:$KAPIKEY | base64`
 
 echo "Using Auth: $BASICAUTH"
 
-JSON="{\"filename\":\"${APPNAME}.${APPSUFFIX}\",\"appId\":$APPID}"
+if [ -z "$APPID" ]; then
+  JSON="{\"filename\":\"${APPNAME}.${APPSUFFIX}\"}"
+else
+  JSON="{\"filename\":\"${APPNAME}.${APPSUFFIX}\",\"appId\":$APPID}"
+fi
+
 curl --silent -X POST https://api.kobiton.com/v1/apps/uploadUrl \
   -H "Authorization: Basic $BASICAUTH" \
   -H 'Content-Type: application/json' \
